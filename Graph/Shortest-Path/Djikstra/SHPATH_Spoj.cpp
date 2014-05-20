@@ -81,7 +81,7 @@ i64 djk()
 int main()
 {
     //freopen("C:/Users/MINTOO/Desktop/Programs/Codeblocks/Spoj/Text/SHPATH.txt","r",stdin);
-    freopen("SHPATH.txt","r",stdin);
+    freopen("SHPATH_Spoj.txt","r",stdin);
 
     int cases,i,j,nr,cost,r,p;
     string name1,name2;
