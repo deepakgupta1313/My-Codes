@@ -3,6 +3,9 @@
 #include<iostream>
 #include<vector>
 #include<climits>
+#include <complex>
+#include <iostream>
+#include <valarray>
 
 using namespace std;
 
