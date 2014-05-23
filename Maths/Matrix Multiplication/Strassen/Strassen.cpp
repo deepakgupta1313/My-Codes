@@ -143,56 +143,6 @@ struct matrix
 };
 
 
-void add1(matrix *c,matrix *a,matrix *b,int x,int y)
-{
-    int dim=a->getDimension();
-
-    int i,j,summ;
-
-    for(i=0;i<dim;++i)
-    {
-        for(j=0;j<dim;++j)
-        {
-            summ=a->get(i,j)+b->get(i,j);
-            c->sett(x*dim+i,y*dim+j,summ);
-        }
-    }
-}
-
-void matrix_multiply(matrix *a,matrix *b,matrix *c,int x1,int y1,int x2,int y2,int dim)
-{
-    if(dim==1)
-    {
-        c->sett(0,0,a->get(x1,y1)*b->get(x2,y2));
-        return;
-    }
-    matrix *one=new matrix(dim/2);
-    matrix *two=new matrix(dim/2);
-    matrix *three=new matrix(dim/2);
-    matrix *four=new matrix(dim/2);
-    matrix *five=new matrix(dim/2);
-    matrix *six=new matrix(dim/2);
-    matrix *seven=new matrix(dim/2);
-    matrix *eight=new matrix(dim/2);
-
-
-    matrix_multiply(a,b,one,x1,y1,x2,y2,dim/2);
-    matrix_multiply(a,b,two,x1,y1+dim/2,x2+dim/2,y2,dim/2);
-    matrix_multiply(a,b,three,x1,y1,x2,y2+dim/2,dim/2);
-    matrix_multiply(a,b,four,x1,y1+dim/2,x2+dim/2,y2+dim/2,dim/2);
-    matrix_multiply(a,b,five,x1+dim/2,y1,x2,y2,dim/2);
-    matrix_multiply(a,b,six,x1+dim/2,y1+dim/2,x2+dim/2,y2,dim/2);
-    matrix_multiply(a,b,seven,x1+dim/2,y1,x2,y2+dim/2,dim/2);
-    matrix_multiply(a,b,eight,x1+dim/2,y1+dim/2,x2+dim/2,y2+dim/2,dim/2);
-
-    add1(c,one,two,0,0);
-    add1(c,three,four,0,1);
-    add1(c,five,six,1,0);
-    add1(c,seven,eight,1,1);
-
-}
-
-
 void printMatrix(matrix mat)
 {
     int i,j;
@@ -253,10 +203,6 @@ int main()
     cout<<*a<<*b;
 
     matrix *c=new matrix(dim);
-
-    matrix_multiply(a,b,c,0,0,0,0,dim);
-
-    cout<<"Multiplied\n"<<*c<<endl;
 
 	return 0;
 }
