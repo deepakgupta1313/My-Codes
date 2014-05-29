@@ -22,9 +22,20 @@ int filled_no,m;
 int *arr;
 bool *del;
 
+int hashh2(int key)
+{
+    int h=key%m;
+    if(!(h&1))
+    {
+        ++h;
+    }
+
+    return h;
+}
+
 int hashh(int key,int idx)
 {
-    int h=(key+(idx*idx+idx)/2)%m;
+    int h=(key+idx*hashh2(key))%m;
     //printf("HASH\t%d\n",h);
     return h;
 }
@@ -213,7 +224,7 @@ void searchh(int num)
 
 int main() {
 
-    freopen("Quadratic Probing.txt","r",stdin);
+    freopen("Double Hashing.txt","r",stdin);
 
     m=4;
     arr=new int[m];
