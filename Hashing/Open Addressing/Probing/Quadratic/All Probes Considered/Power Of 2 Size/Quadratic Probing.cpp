@@ -1,3 +1,8 @@
+
+//          For atleast first size/2 probes to be different, table size should be prime
+
+
+
 #include <cstdio>
 #include <algorithm>
 #include<iostream>
@@ -17,9 +22,9 @@ int filled_no,m;
 int *arr;
 bool *del;
 
-int hashh(int key)
+int hashh(int key,int idx)
 {
-    int h=key%m;
+    int h=(key+idx*idx)%m;
     //printf("HASH\t%d\n",h);
     return h;
 }
@@ -29,13 +34,14 @@ void inserttRebuild(int num)
     printf("Inserting REBUILD %d\n",num);
     int i;
 
-    int h=hashh(num);
+    int h;
 
     for(i=0;i<m;++i)
     {
-        if(arr[(h+i)%m]==0)
+        h=hashh(num,i);
+        if(arr[h]==0)
         {
-            arr[(h+i)%m]=num;
+            arr[h]=num;
             break;
         }
     }
@@ -45,7 +51,7 @@ void inserttRebuild(int num)
 
 bool needRebuild()
 {
-    if(filled_no>=(9*m)/10)
+    if(filled_no>=m/2)
     {
         return true;
     }
@@ -104,16 +110,17 @@ void insertt(int num)
         rebuild();
     }
 
-    int h=hashh(num);
+    int h;
 
     for(i=0;i<m;++i)
     {
-        if(arr[(h+i)%m]==0 || del[(h+i)%m])
+        h=hashh(num,i);
+        if(arr[h]==0 || del[h])
         {
-            arr[(h+i)%m]=num;
+            arr[h]=num;
             ++filled_no;
 
-            del[(h+i)%m]=false;
+            del[h]=false;
             break;
         }
     }
@@ -128,23 +135,24 @@ void deletee(int num)
 {
     printf("Deleting %d\n",num);
 
-    int h=hashh(num);
+    int h;
     int i;
     bool foundd=false;
 
     for(i=0;i<m;++i)
     {
-        if(arr[(h+i)%m]==num)
+        h=hashh(num,i);
+        if(arr[h]==num)
         {
-            if(!del[(h+i)%m])
+            if(!del[h])
             {
                 --filled_no;
                 foundd=true;
-                del[(h+i)%m]=true;
+                del[h]=true;
                 break;
             }
         }
-        else if(arr[(h+i)%m]==0)
+        else if(arr[h]==0)
         {
             break;
         }
@@ -159,7 +167,7 @@ void deletee(int num)
 void searchh(int num)
 {
     printf("Searching %d\n",num);
-    int h=hashh(num);
+    int h;
     int i;
 
     bool foundd=false;
@@ -168,27 +176,28 @@ void searchh(int num)
 
     for(i=0;i<m;++i)
     {
-        if(arr[(h+i)%m]==num)
+        h=hashh(num,i);
+        if(arr[h]==num)
         {
-            if(!del[(h+i)%m])
+            if(!del[h])
             {
                 if(emp!=-1)
                 {
-                    arr[emp]=arr[(h+i)%m];
-                    del[(h+i)%m]=true;
+                    arr[emp]=arr[h];
+                    del[h]=true;
                     del[emp]=false;
                 }
                 foundd=true;
                 break;
             }
         }
-        else if(!arr[(h+i)%m]==0)
+        else if(!arr[h]==0)
         {
             break;
         }
-        else if(emp==-1 && del[(h+i)%m])
+        else if(emp==-1 && del[h])
         {
-            emp=(h+i)%m;
+            emp=h;
         }
     }
 
@@ -204,7 +213,7 @@ void searchh(int num)
 
 int main() {
 
-    freopen("Linear Probing.txt","r",stdin);
+    freopen("Quadratic Probing.txt","r",stdin);
 
     m=4;
     arr=new int[m];
