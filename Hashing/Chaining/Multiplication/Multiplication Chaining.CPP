@@ -8,11 +8,7 @@ using namespace std;
 
 #define PB push_back
 
-#define w 8
-#define r 3
-#define MAX_M 1024
-
-int a,m;
+#define M 1101
 
 struct element
 {
@@ -26,13 +22,12 @@ struct element
     }
 };
 
-element *arr[MAX_M];
+//element *arr[M];
+element **arr;
 
 int hashh(int key)
 {
-    int h=((a*key)%(int)pow(2,w))>>(w-r);
-    printf("HASH\t%d\n",h);
-    return h;
+    return key%M;
 }
 
 void insertt(int num)
@@ -107,13 +102,8 @@ void searchh(int num)
 int main() {
 
     freopen("Multiplication Chaining.txt","r",stdin);
-    int tp;
-    m=pow(2,r);
 
-    while(!(a&1))
-    {
-        a=(rand()%(int)pow(2,w-1))+pow(2,w-1);
-    }
+    arr=new element*[M];
 
     int i,cases,num;
     char c;
