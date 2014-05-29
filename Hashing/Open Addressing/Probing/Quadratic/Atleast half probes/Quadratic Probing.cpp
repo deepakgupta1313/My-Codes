@@ -1,6 +1,6 @@
 
 //          For atleast first size/2 probes to be different, table size should be prime
-
+//          Here, m is not prime but it should be for minimum of m/2 positions to be checked
 
 
 #include <cstdio>
