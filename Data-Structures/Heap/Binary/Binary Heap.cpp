@@ -24,6 +24,11 @@ void flow_up(vector<int> &heapp,int pos)
         return;
     }
 
+    if(pos==0)
+    {
+        return;
+    }
+
     int parent=(pos-1)>>1;
 
     if(heapp[parent]<heapp[pos])
