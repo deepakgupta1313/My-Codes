@@ -165,6 +165,23 @@ void display(vector<int> &heapp)
     printf("\n\n\n");
 }
 
+void merge_heap(vector<int> &merged,vector<int> &a,vector<int> &b)
+{
+    int i;
+
+    for(i=0;i<a.size();++i)
+    {
+        merged.PB(a[i]);
+    }
+
+    for(i=0;i<b.size();++i)
+    {
+        merged.PB(b[i]);
+    }
+
+    build_heap(merged);
+}
+
 int main()
 {
     freopen("Binary Heap.txt","r",stdin);
@@ -190,6 +207,9 @@ int main()
         display(heapp);
     }
 
+    vector<int> merged;
+
+    merge_heap(merged,heapp,heapp);
 
 
 	return 0;
