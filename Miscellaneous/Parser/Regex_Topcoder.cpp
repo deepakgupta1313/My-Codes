@@ -339,7 +339,7 @@ int main()
     //freopen("Text/Regex .txt","r",stdin);
     Regex  ss;
 
-    string a[]={"ade","abde","ae","e"};
+    string a[]={"ade","abde","ae","e","abcbccde"};
     string b="(a(bc*)*d)*e";
 
     VS x;
