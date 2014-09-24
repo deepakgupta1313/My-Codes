@@ -20,6 +20,27 @@ using namespace std;
 //#define gc getchar_unlocked
 #define gc getchar
 
+inline int readPosInt()
+{
+    int ret=0;
+    char c;
+    c=gc();
+
+    while(c<'0' || c>'9')
+    {
+        //scanf("%c",&c);
+        c=gc();
+    }
+
+    while(c>='0' && c<='9')
+    {
+        ret=ret*10+(c-'0');
+        c=gc();
+    }
+
+    return ret;
+}
+
 
 inline i64 readPosLLD()
 {
