@@ -5,13 +5,3 @@ deepakgupta1313@gmail.com
 
 
 This is the collection of all my codes.
-
-My Code Repository
-
-My Algorithm Repository
-
-My Data Structures Repository
-
-My Collection of Algorithm and Data Structures implementation
-
-My Algorithm Library
