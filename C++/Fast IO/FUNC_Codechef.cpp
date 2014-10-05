@@ -98,27 +98,6 @@ inline i64 readLLD()
 
 
 
-inline int readPosInt()
-{
-    int ret=0;
-    char c;
-    c=gc();
-
-    while(c<'0' || c>'9')
-    {
-        //scanf("%c",&c);
-        c=gc();
-    }
-
-    while(c>='0' && c<='9')
-    {
-        ret=ret*10+(c-'0');
-        c=gc();
-    }
-
-    return ret;
-}
-
 inline int readInt()
 {
     int ret=0;
