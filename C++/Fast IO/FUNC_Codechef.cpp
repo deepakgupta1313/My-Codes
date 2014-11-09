@@ -28,7 +28,6 @@ inline int readPosInt()
 
     while(c<'0' || c>'9')
     {
-        //scanf("%c",&c);
         c=gc();
     }
 
